@@ -17,13 +17,13 @@ import (
 func ReadConfig() pojo.ConfigData {
 	var ConfigPojo pojo.ConfigData
 
-	abs_app, err := os.Executable() // get application location
+	absApp, err := os.Executable() // get application location
 	if err != nil {
 		log.Fatalln(err)
 	}
-	abs_wd, _ := filepath.EvalSymlinks(filepath.Dir(abs_app)) // get floder has the executabel application
+	absWd, _ := filepath.EvalSymlinks(filepath.Dir(absApp)) // get floder has the executabel application
 
-	dc := path.Join(abs_wd, "configuration.yaml")
+	dc := path.Join(absWd, "configuration.yaml")
 
 	config, err := ioutil.ReadFile(dc)
 	if err != nil {
@@ -38,7 +38,7 @@ func ReadConfig() pojo.ConfigData {
 	if ConfigPojo.LogPath == "" {
 		ConfigPojo.LogPath = "ruijie.log"
 	}
-	ConfigPojo.LogPath = path.Join(abs_wd, ConfigPojo.LogPath)
+	ConfigPojo.LogPath = path.Join(absWd, ConfigPojo.LogPath)
 
 	// empty Server
 	if ConfigPojo.Server == "" {

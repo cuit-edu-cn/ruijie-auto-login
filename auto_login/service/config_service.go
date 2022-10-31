@@ -14,16 +14,16 @@ import (
 
 // DetectConfig 检测是否有配置文件，如果有的话就返回true，如果没有的话就创建配置文件并返回false
 func DetectConfig() bool {
-	abs_app, err := os.Executable() // get application location
+	absApp, err := os.Executable() // get application location
 	if err != nil {
 		log.Fatalln(err)
 	}
-	abs_wd, err := filepath.EvalSymlinks(filepath.Dir(abs_app)) // get floder has the executabel application
+	absWd, err := filepath.EvalSymlinks(filepath.Dir(absApp)) // get floder has the executabel application
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	src := abs_wd + "/configuration.yaml"
+	src := absWd + "/configuration.yaml"
 	exists, err := utils.FileExists(src)
 	if err != nil {
 		log.Fatalln(err)

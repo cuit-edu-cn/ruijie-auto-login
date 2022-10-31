@@ -1,14 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"strings"
-	"time"
-
 	ruijielogger "auto_login/logger"
 	pojo "auto_login/pojo"
 	configUtils "auto_login/service"
 	utils2 "auto_login/utils"
+	"fmt"
+	"strings"
+	"time"
 )
 
 func main() {
@@ -49,9 +48,11 @@ func main() {
 				QueryString: queryString,
 			})
 			resString, resCode = utils2.Get("http://www.google.cn/generate_204")
-			logger.Log("Get below infos: ")
+			//logger.Log("Get below infos: ")
 			logger.Log(resString)
-			logger.Log(fmt.Sprintf("ResCode: %d", resCode))
+			contains := strings.Contains(resString,"Aready")
+			fmt.Printf("%+s\n",contains)
+			//logger.Log(fmt.Sprintf("ResCode: %d", resCode))
 
 			time.Sleep(time.Duration(config.TimeInterval) * time.Second)
 		}
