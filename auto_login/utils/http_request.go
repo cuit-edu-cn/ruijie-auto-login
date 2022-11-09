@@ -14,7 +14,6 @@ import (
 
 // Get 发送GET请求
 func Get(url string) (string, int) {
-
 	// 超时时间：5秒
 	client := &http.Client{Timeout: 15 * time.Second}
 	resp, err := client.Get(url)
@@ -60,7 +59,5 @@ func Post(url string, data *pojo.UserData) *HttpRequest.Response {
 		"passwordEncrypt": "false",
 	}
 	resp, _ := req.Post(url, postData)
-	//body, _ := resp.Body()
-	//fmt.Println(string(body))
 	return resp
 }

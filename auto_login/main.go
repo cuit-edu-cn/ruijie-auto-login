@@ -48,11 +48,11 @@ func main() {
 				QueryString: queryString,
 			})
 			resString, resCode = utils2.Get("http://www.google.cn/generate_204")
-			//logger.Log("Get below infos: ")
-			logger.Log(resString)
-			contains := strings.Contains(resString,"Aready")
-			fmt.Printf("%+s\n",contains)
-			//logger.Log(fmt.Sprintf("ResCode: %d", resCode))
+
+			contains := strings.Contains(resString, "Already online")
+			if contains {
+				logger.Log("登陆成功")
+			}
 
 			time.Sleep(time.Duration(config.TimeInterval) * time.Second)
 		}

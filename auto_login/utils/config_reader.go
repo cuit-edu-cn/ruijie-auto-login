@@ -72,7 +72,7 @@ func GetServiceCode(serviceName *string) string {
 
 	codeIdx := serviceMap[*serviceName] // code index
 	codeMap := map[string]string{
-		"1": "%E7%A7%BB%E5%8A%A8t",         //移动
+		"1": "%E7%A7%BB%E5%8A%A8",          //移动%E7%A7%BB%E5%8A%A8
 		"2": "%E8%81%94%E9%80%9A",          //联通
 		"3": "%E7%94%B5%E4%BF%A1",          //电信
 		"0": "%E6%A0%A1%E5%9B%AD%E7%BD%91", //校园网

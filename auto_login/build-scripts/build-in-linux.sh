@@ -17,7 +17,7 @@ cd "$dir_cur/.."
 
 root_path=`pwd`
 dir_out="$root_path/output"
-path_src="$root_path/src/main.go"
+path_src="$root_path/main.go"
 path_config="./configuration.yaml"
 
 lst_os=("darwin" "freebsd" "linux" "windows")
