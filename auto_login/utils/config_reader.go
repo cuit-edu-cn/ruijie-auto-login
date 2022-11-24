@@ -15,20 +15,23 @@ import (
 
 // ReadConfig 读取配置文件为结构体
 func ReadConfig() pojo.ConfigData {
+
 	var ConfigPojo pojo.ConfigData
 
-	absApp, err := os.Executable() // get application location
+	// get application location
+	absApp, err := os.Executable()
 	if err != nil {
 		log.Fatalln(err)
 	}
-	absWd, _ := filepath.EvalSymlinks(filepath.Dir(absApp)) // get floder has the executabel application
-
+	// get floder has the executabel application
+	absWd, _ := filepath.EvalSymlinks(filepath.Dir(absApp))
 	dc := path.Join(absWd, "configuration.yaml")
-
 	config, err := ioutil.ReadFile(dc)
+
 	if err != nil {
 		fmt.Println(err)
 	}
+	
 	err1 := yaml.Unmarshal(config, &ConfigPojo)
 	if err1 != nil {
 		fmt.Println(err1)
@@ -53,21 +56,22 @@ func ReadConfig() pojo.ConfigData {
 	return ConfigPojo
 }
 
+// GetServiceCode 根据服务商名获取服务商对应的code
 func GetServiceCode(serviceName *string) string {
 	serviceMap := map[string]string{
-		"1":   "1", //移动
-		"移动":  "1",
-		"yd":  "1",
-		"2":   "2", //联通
-		"联通":  "2",
-		"lt":  "2",
-		"3":   "3", //电信
-		"电信":  "3",
-		"dx":  "3",
-		"0":   "0", //校园网
+		"1":      "1", //移动
+		"移动":   "1",
+		"yd":     "1",
+		"2":      "2", //联通
+		"联通":   "2",
+		"lt":     "2",
+		"3":      "3", //电信
+		"电信":   "3",
+		"dx":     "3",
+		"0":      "0", //校园网
 		"校园网": "0",
 		"教育网": "0",
-		"edu": "0",
+		"edu":    "0",
 	}
 
 	codeIdx := serviceMap[*serviceName] // code index
@@ -78,9 +82,9 @@ func GetServiceCode(serviceName *string) string {
 		"0": "%E6%A0%A1%E5%9B%AD%E7%BD%91", //校园网
 	}
 	nameMap := map[string]string{
-		"1": "移动",  //移动
-		"2": "联通",  //联通
-		"3": "电信",  //电信
+		"1": "移动",   //移动
+		"2": "联通",   //联通
+		"3": "电信",   //电信
 		"0": "校园网", //校园网
 	}
 	*serviceName = nameMap[codeIdx] // update service name

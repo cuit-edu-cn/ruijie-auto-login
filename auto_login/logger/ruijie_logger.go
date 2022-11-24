@@ -20,11 +20,6 @@ type RuijieLogger struct {
 func NewRuijieLogger(logpath string,
 	timeclear int) *RuijieLogger {
 
-	// if !strings.Contains(logpath, ".log") {
-	// 	logpath = logpath + ".log." + utils.GetNowTimeString()
-	// }
-	//logpath = logpath + "." + utils.GetNowTimeString()  // will
-
 	logger := go_logger.NewLogger()
 	logger.Detach("console")
 

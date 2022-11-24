@@ -17,6 +17,7 @@ func main() {
 		print("配置文件已生成，请填写配置之后重启该软件。\n")
 		return
 	}
+	// 读取配置文件
 	config := utils2.ReadConfig()
 	logger := ruijielogger.NewRuijieLogger(config.LogPath, config.LogClearDay)
 	logger.Log("Start RuijieAL")
@@ -24,12 +25,10 @@ func main() {
 	logger.Log("Password:" + config.Password)
 	logger.Log("LogPath:" + config.LogPath)
 
-	//if config.TimeInterval < (60 * 3) {
-	//	config.TimeInterval = 60 * 3 // sleep 3 minutes
-	//}
 	for {
 		resString, resCode := utils2.Get("http://www.google.cn/generate_204")
 		print(resCode)
+		//如果返回的code ！= 204 表示当前电脑没有登陆账号需要登陆
 		for resCode != 204 {
 			loginpageUrl := strings.Split(resString, "'")[1]
 			loginUrl := strings.ReplaceAll(strings.Split(loginpageUrl, "?")[0], "index.jsp", "InterFace.do?method=login")
@@ -41,6 +40,7 @@ func main() {
 			serverCode := utils2.GetServiceCode(&config.Server)
 
 			logger.Log(fmt.Sprintf("Try connect to %s with User %s", config.Server, config.UserId))
+			//提交连接请求
 			utils2.Post(loginUrl, &pojo.UserData{
 				UserId:      config.UserId,
 				Password:    config.Password,

@@ -46,6 +46,9 @@ func DetectConfig() bool {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	ioutil.WriteFile(src, data, 0777)
+	errW := ioutil.WriteFile(src, data, 0777)
+	if errW != nil {
+		return false
+	}
 	return false
 }
